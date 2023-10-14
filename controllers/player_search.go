@@ -1,4 +1,4 @@
-package handlers
+package controllers
 
 import (
 	"encoding/json"
@@ -56,13 +56,12 @@ func PlayerSearchHandler(c *gin.Context) {
 
 	body, _ := io.ReadAll(resp.Body)
 
-	// fmt.Printf("%+v\n", resp)
-
 	var uidInfoJson UidInfoJson
 
 	if err := json.Unmarshal(body, &uidInfoJson); err != nil {
 		fmt.Println(err)
 		return
 	}
-	fmt.Printf("%+v\n", uidInfoJson)
+
+	c.JSON(200, uidInfoJson)
 }
